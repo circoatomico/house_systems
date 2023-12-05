@@ -1,8 +1,6 @@
 module Immobile
   class Immobile < ApplicationRecord
-    self.table_name = 'immobile'
-
-    has_many :transactions
+    has_many :reservations
 
     enum type_immobile: [:apartment, :house, :commercial_room]
   end

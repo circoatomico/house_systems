@@ -11,6 +11,17 @@ class AuthenticationController < ApplicationController
     end
   end
 
+  def register
+    user = User::User.new(email: params[:email], password: params[:password])
+
+    if user.save
+      token = generate_token(user.id)
+      render json: { token: token }
+    else
+      render json: { error: 'Invalid credentials' }, status: :unauthorized
+    end
+  end
+
   private
 
   def generate_token(user_id)

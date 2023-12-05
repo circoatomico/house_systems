@@ -1,6 +1,6 @@
 class CreateImmobileTable < ActiveRecord::Migration[5.2]
   def change
-    create_table :immobile do |t|
+    create_table :immobiles do |t|
       t.string :description
       t.string :price
       t.string :address

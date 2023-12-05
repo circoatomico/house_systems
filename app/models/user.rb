@@ -1,6 +1,7 @@
-class User < ApplicationRecord
-  self.table_name = 'user'
-  has_many :transactions
+module User
+  class User < ApplicationRecord
+    has_many :reservations
 
-  has_secure_password
+    has_secure_password
+  end
 end

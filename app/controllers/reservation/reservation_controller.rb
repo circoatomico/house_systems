@@ -1,12 +1,14 @@
-module Immobile
-  class ImmobileController < ActionController::API
 
+module Reservation
+  class ReservationController < ActionController::API
     before_action :authenticate_request
 
-    def index
-      immobiles = Immobile.all
+    def create
+      immobile = Immobile::Immobile.find(params[:immobile_id])
+      reservation = Reservation.new(immobile: immobile, user: @current_user)
 
-      render json: immobiles, status: :ok
+      reservation.save!
+      render json: reservation, status: :created
     end
 
     private
@@ -22,6 +24,5 @@ module Immobile
         render json: { error: 'Invalid token' }, status: :unauthorized
       end
     end
-
   end
 end

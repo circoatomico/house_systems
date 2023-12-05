@@ -19,6 +19,8 @@ gem 'puma', '~> 3.11'
 # Use Json Web Token (JWT) for token based authentication
 gem 'jwt'
 
+gem 'pg', '>= 0.18', '< 2.0'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 

@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2023_11_10_023316) do
 
-  create_table "immobile", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "immobiles", force: :cascade do |t|
     t.string "description"
     t.string "price"
     t.string "address"
@@ -28,14 +31,14 @@ ActiveRecord::Schema.define(version: 2023_11_10_023316) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "transaction", force: :cascade do |t|
-    t.integer "immobile_id"
-    t.integer "user_id"
-    t.index ["immobile_id"], name: "index_transaction_on_immobile_id"
-    t.index ["user_id"], name: "index_transaction_on_user_id"
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "immobile_id"
+    t.bigint "user_id"
+    t.index ["immobile_id"], name: "index_reservations_on_immobile_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
-  create_table "user", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password"
@@ -44,4 +47,6 @@ ActiveRecord::Schema.define(version: 2023_11_10_023316) do
     t.string "password_digest"
   end
 
+  add_foreign_key "reservations", "immobiles"
+  add_foreign_key "reservations", "users"
 end
