@@ -1,7 +1,7 @@
 # app/controllers/authentication_controller.rb
 class AuthenticationController < ApplicationController
   def authenticate
-    user = User.find_by(email: params[:email])
+    user = User::User.find_by(email: params[:email])
 
     if user && user.authenticate(params[:password])
       token = generate_token(user.id)
